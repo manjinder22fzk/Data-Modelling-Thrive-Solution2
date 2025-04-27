@@ -6,12 +6,12 @@ import os
 import logging
 
 # Constants
-S3_BUCKET = 'thrive-project-solution2'
-AWS_REGION = 'us-east-1'
+S3_BUCKET = 'thrive-bucket-96'
 CONN_ID = 'aws_default'  # Airflow MWAA will automatically use this connection
 
 def upload_file_to_s3(**kwargs):
     changed_file_path = kwargs['dag_run'].conf.get('changed_file_path')
+
     
     if not changed_file_path:
         raise ValueError("No changed file path passed to DAG.")
