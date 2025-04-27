@@ -1,0 +1,35 @@
+name: Data Engineering CICD Pipeline
+
+on:
+  push:
+    branches:
+      - master   # Only main branch
+
+jobs:
+  upload-to-aws:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Configure AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1   # Correct AWS region (update if yours is different)
+
+      # Upload new data files (users, conversation_start, conversation_parts) to S3 input folders
+      - name: Upload local files to S3
+        run: |
+          aws s3 sync raw_uploads/users/ s3://thrive-project-solution2/input/users/
+          aws s3 sync raw_uploads/conversation_start/ s3://thrive-project-solution2/input/conversation_start/
+          aws s3 sync raw_uploads/conversation_parts/ s3://thrive-project-solution2/input/conversation_parts/
+
+      # Upload Airflow DAGs to MWAA DAGs S3 bucket
+      - name: Upload Airflow DAGs to MWAA
+        run: |
+          aws s3 sync src/airflow_dags/ s3://thrive-project-solution2/dags/

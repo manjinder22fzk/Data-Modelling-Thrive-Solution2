@@ -1,0 +1,14 @@
+name,email,id,is_customer
+Randy Young,randy@example.com,0,1
+Michael Cox,michael@example.com,1,1
+Raymond Cox,raymond@example.com,2,1
+Mary Phillips,mary@example.com,3,1
+Kelly Garza,kelly@example.com,4,1
+David Norton,david@example.com,5,1
+John Taylor,john@example.com,6,0
+Anita Wang,anita@example.com,7,1
+Deanna Munoz,deanna@example.com,8,0
+Kelly Mcmillan,kelly@example.com,9,1
+Nicholas Garcia,nicholas@example.com,10,1
+Karen Gibbs,karen@example.com,11,1
+Kenneth Brown,kenneth@example.com,12,1
