@@ -18,7 +18,7 @@ git add .
 echo "🔵 Committing changes..."
 git commit -m "Automated commit from setup_and_push.sh on $(date '+%Y-%m-%d %H:%M:%S')"
 
-echo "🔵 Pushing changes to remote main branch..."
-git push origin main
+echo "🔵 Pushing changes to remote master branch..."
+git push origin master
 
 echo "✅ Code pushed to GitHub. CI/CD Pipeline will now trigger!"
