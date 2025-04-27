@@ -1,5 +1,33 @@
 ﻿# 🛠️ Thrive Conversations Data Pipeline (S3 ➔ MWAA ➔ Glue ➔ S3)
 
+ ## 🚀 Solution 2 Overview
+
+This is an additional solution that I have provided, designed with a more Data Engineering-focused and production-grade approach.  
+The goal here was to replicate how real-world data pipelines are built and deployed in industry environments.
+
+In this solution:
+
+- I created a **CI/CD pipeline** using **GitHub Actions**.
+- Developed a **Bash pipeline script** that:
+  - Creates a virtual environment
+  - Installs required Python libraries
+  - Pushes the latest code changes automatically to the GitHub repository
+- Upon pushing, **GitHub Actions** trigger a workflow that:
+  - Initiates an **Apache Airflow (Amazon MWAA)** DAG
+  - The Airflow DAG uploads the input files into an **S3 bucket**.
+- An **AWS Glue Crawler** then:
+  - Crawls the input directory
+  - Creates tables inside the **AWS Glue Database**.
+- A **AWS Glue ETL job** processes the data and:
+  - Consolidates it according to the required logic
+  - Dumps the final output back into the **S3 output directory** in **Parquet format**.
+- Another **Glue Crawler** scans the output directory and:
+  - Creates the final output table inside the **AWS Glue Database**.
+
+You can find all related **screenshots**, **output files**, and the **Spark ETL script** inside this repository.
+
+This solution reflects how modern data platforms automate and scale data ingestion, transformation, and storage efficiently.
+
 ## 📚 Project Overview
 
 This project builds an AWS Data Pipeline that:
